@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "finance-upwork",
+  "private_key_id": "2e8124df5b8f70f9a2f8daf3eec04eb8a0ade61c",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDDvTCMZY6XrBiO\nGSGQygkbHdxzWCqzhfghSqToANN/6JIAr4uLkWO3KYjm3z4yYQmoGabKSn9SQw5Y\nCO7HAB+RzYEY4qBGf9qmYP/lNpFfGG/RL26ZziiKMQSzfK36B8Pw+omHqnBsTjlq\nwd5sCjh8bVn2CW79RznHBXuPMHjRZZiBHQZFU7eSg5Ih9xtGBkL3ACXmwrjedvbw\ncF8P2KKbdszOCJjQh+j6tnni4GMyMtEE9aPWP/lh8wE07zfKsfrDVlBVzPFQM4O9\nic/icUfi84iRXoyC4qUCbQ3OfUuHIiLdDytJ1MvglJkYk/VEAYbHStVrUCFkssM/\ndd/2+wtpAgMBAAECggEAByfOwykmGZpq14youZdrK7dkyFTXfcfWr+01F/6fZ2BY\nBbKlJta2LEYA+VNSqEqRbO3gIdUamwYfcNLbG2xVmxxwkllxi2uP3Dp09wWunN54\nCE/ZYBcatrTknjpJ+AyUilthpPNzUpWYUNQ8wRrCtnNpwR5BP+d8n8S4v+hWmFf+\neshVRBrO7MnydMP6BxSVrZJUA7KM4TrQsQzK4be/0BxCZ/W11w97axnQ1yyYJDFH\nA3lOPD/dRXzpkmHMWjmYS4e4yG+3WJ9Vap1p4X4hbvj0iinpXYW73uzIoX5gAsju\nFUUqt/RMH4l6/b8LEKHWSBycLkkV2zIlnllfPuYwAQKBgQDziZasXo3YxasHIl3Y\nkfJNmtg0YvKkVw0n8tCqIwmHl7LrcEv4f0F8QSUv4r1vfaZhKyAZ2voB+MXpDaMF\nfDj2t7wGzRfUV/nMF3klx1bAh+dAEYEJK8qXCHezXdUpvPlQBxuZpPADfp0oVa18\nTABszqoj1TmKE5skq/+KUZpwAQKBgQDNwW1+V0O0oIGXTdKwowOKxjHTvpETuEqj\nSdkcyl7FniKBuMOWs+3k2eI4LeLMA5NozYi5ZYZIDEl4l+r5b3lWs4x4OKJCQ/zu\nW+d/2cUjUycVnqqtuCa+vZLmLhF56e/ibau6hUkTJQ/igEOjZLG4+bieuEsM2A2S\nniF+5NMbaQKBgGR+GumHntqbPmaUPMtX9fcl9R8w0VUVAr3ASXBbQtxrsY3Lad3h\njQEb1J983ZR68cPYysdAf7d+kxQG54Uk7FCKIpFf4fxiTRZ1fS0ko1yQ99CNKITD\nSDaobNRb3ND7RJlMRYxR7iRTA8CYEh1fMzGy2awtmS+rxXINc0X9RFABAoGAAsm0\nKhoUmMXz+5DaYfpTefXlhvD2FkZQ/JVrk7BKSHM0FH3kaI5XktpA7nHwuMLzpF/k\nkl6Fy0QfWrr0PBz+j+Yu6RIbYLp7Gt+z60+QFEJ0LR7RQTlVjRAUhXnqUrSQw4io\n4wYbT18ZMAB86iHbJp57mer1WV80D+CEo6uGEMECgYEAjcN8l40nbYRzAfmWeJCj\nEQ4F87vAiuTm3cxxtQ6splTO53gBCK3JGjG2Pf1moBmwxcOhGSh5bXRnepS16gcc\nkVVm0NkAmfGWVYPPMjdcdVZ34eRtXwW23lkYOvUYadgIT9UV2lCn2ygcaJOrmfOC\nEFjdgmuaMTU8wm1+iGr6yBI=\n-----END PRIVATE KEY-----\n",
+  "client_email": "finace@finance-upwork.iam.gserviceaccount.com",
+  "client_id": "110804176645190991681",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/finace%40finance-upwork.iam.gserviceaccount.com"
+}

@@ -1,0 +1,25 @@
+{
+  "name": "finance-bot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "generate": "node controllers/google_spreadsheet.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.4.0",
+    "body-parser": "^1.17.1",
+    "ejs": "^2.5.6",
+    "express": "^4.15.2",
+    "google-spreadsheet": "^2.0.3",
+    "jsonfile": "^3.0.0",
+    "mongoose": "^4.9.10",
+    "node-rest-client": "^3.1.0",
+    "nodemon": "^1.11.0",
+    "pug": "^2.0.0-beta.12"
+  }
+}

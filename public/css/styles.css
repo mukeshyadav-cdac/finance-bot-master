@@ -1,0 +1,16 @@
+body {
+	background-color: #eee;
+}
+
+.form-1 {
+	margin-top: 50px;
+}
+
+.error-msg-1 {
+	margin-top: 20px;
+	color: red;
+}
+
+.label-1 {
+	color: #d88;
+}
