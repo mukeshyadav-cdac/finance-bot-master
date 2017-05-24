@@ -4,9 +4,9 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const app = express ();
 const port = 5000;
-const mongoose = require('mongoose');
+//const mongoose = require('mongoose');
 const config = require('./config');
-var connection = connect();
+//var connection = connect();
 
 /**
  * Controllers (route handlers).
@@ -30,10 +30,10 @@ app.post('/', userController.getUserConnection);
 //set static files (css, images, etc) location
 app.use (express.static(__dirname + '/public'));
 
-connection
-  .on('error', console.log)
-  .on('disconnected', connect)
-  .once('open', listen);
+// connection
+//   .on('error', console.log)
+//   .on('disconnected', connect)
+//   .once('open', listen);
 
 //start the server
 
@@ -46,7 +46,12 @@ function listen () {
   server.timeout = 6000000 ;
 }
 
-function connect () {
-  var connection = mongoose.connect(config.db).connection;
-  return connection;
-}
+var server = app.listen (port, function () {
+  console.log('app started on port ' + port);
+});
+
+
+// function connect () {
+//   var connection = mongoose.connect(config.db).connection;
+//   return connection;
+// }

@@ -2,6 +2,8 @@ var Client = require('node-rest-client').Client;
 var config = require('../config');
 var client = new Client();
 var User = require('../models/user');
+var kue = require('kue');
+var jobs = kue.createQueue();
 
 var request_header = {
 	headers: {
@@ -33,31 +35,31 @@ exports.homeView = (req, res) => {
 	});
 };
 
+function createSheet (data){
+	var job = jobs.create('create sheet', data)
+	job
+	  .on('complete', function (){
+	  	console.log('Job', job.id, 'with name', job.data, 'is    done');
+	  })
+	  .on('failed', function (){
+	   	console.log('Job', job.id, 'with name', job.data, 'has  failed');
+	  });
+	 job.save();
+}
+
 exports.getUserConnection = (req, res) => {
 	beforeRequest(function() {
+	request_header["data"] =  {
+	    "id_bank" : req.body.bankId,
+	    "login" : req.body.login,
+	    "password" : req.body.password
+	  }
+		createSheet(request_header)
 
-		request_header["data"] =  {
-			"id_bank" : req.body.bankId,
-			"login" : req.body.login,
-			"password" : req.body.password
-		}
-
-		console.log(request_header)
-		client.post("https://tchokin.biapi.pro/2.0/users/me/connections?expand=accounts", request_header, function ( data, response) {
-			console.log(data);
-			var user = new User(data)
-			user.save(function(err, user) {
-				if ( err ) {
-					console.log( err )
-				} else {
-					res.render('pages/accounts', {
-						title: 'Finance Accounts',
-						error: 'no',
-						user:  user
-					});
-				}
-			})
-		})
+		res.render('pages/accounts', {
+			title: 'Finance Accounts',
+			error: 'no'
+		});
 	});
 }
 
