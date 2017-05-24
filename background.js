@@ -3,7 +3,6 @@ var jobs = kue.createQueue();
 var Client = require('node-rest-client').Client;
 var config = require('./config');
 var client = new Client();
-
 var createGoogleSheet =  require('./controllers/google_spreadsheet.js');
 
 jobs.process('create sheet', function (job, done){

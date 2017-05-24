@@ -1,8 +1,15 @@
 var GoogleSpreadsheet = require('google-spreadsheet');
 var async = require('async');
 //var jsonfile = require('../transactions.json')
-
-var doc = new GoogleSpreadsheet('1IB5pSKdO4a_VdRRYf0vUZFCrv9B8bPaISCrfVvXrZyk');
+var sheetArray = [
+  "1IB5pSKdO4a_VdRRYf0vUZFCrv9B8bPaISCrfVvXrZyk",
+  "1j25MGch1fEjcN2eQlSz9AQM75iRywssSaH--bPb2t74",
+  "1NNmlE_0uhjOwClLfxOcSFLhE9pOGIE0I9yLDkdpcveE",
+  "1NNmlE_0uhjOwClLfxOcSFLhE9pOGIE0I9yLDkdpcveE",
+  "1WQ8GLijceoVkpY8APxw9eamtex8-T5Zb-ADzXQVncCc"
+]
+var index = 0
+var doc = new GoogleSpreadsheet(sheetArray[index]);
 var sheet;
 
 module.exports = function(jsonfile ) {
@@ -42,6 +49,7 @@ module.exports = function(jsonfile ) {
                 console.log(index)
                 index = index + 1
                 if (index >= size_transactions ) {
+                  index = index + 1;
                   step();
                 } else {
                   addRow(jsonfile.transactions[index]);

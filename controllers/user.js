@@ -55,11 +55,14 @@ exports.getUserConnection = (req, res) => {
 	    "password" : req.body.password
 	  }
 		createSheet(request_header)
+		res.redirect('/transactions')
+	});
+}
 
-		res.render('pages/accounts', {
-			title: 'Finance Accounts',
-			error: 'no'
-		});
+exports.transactions = (req, res) => {
+	res.render('pages/accounts', {
+		title: 'Finance Accounts',
+		error: 'no'
 	});
 }
 

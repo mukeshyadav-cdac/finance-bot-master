@@ -25,6 +25,7 @@ app.set('view engine', 'pug');
 app.get('/about', userController.aboutView);
 app.get('/', userController.homeView);
 app.post('/', userController.getUserConnection);
+app.get('/transactions', userController.transactions);
 
 
 //set static files (css, images, etc) location
