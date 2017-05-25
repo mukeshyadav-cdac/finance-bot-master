@@ -4,6 +4,8 @@ var Client = require('node-rest-client').Client;
 var config = require('./config');
 var client = new Client();
 var createGoogleSheet =  require('./controllers/google_spreadsheet.js');
+var  moment = require('moment');
+var format = 'YYYY-MM-DD';
 
 jobs.process('create sheet', function (job, done){
  /* carry out all the job function here */
@@ -19,7 +21,10 @@ jobs.process('create sheet', function (job, done){
       }
     };
 
+    var max_date = moment().format(format);
+    var min_date = moment().subtract(3, 'months').format(format);
     request_header["path"] = {"user_id": data.id_user, "id": account.id};
+    request_header["data"] = {"min_date": min_date, "max_date": max_date};
     console.log(request_header);
     setTimeout(function() {
       client.get("https://tchokin.biapi.pro/2.0/users/${user_id}/accounts/${id}/transactions",  request_header, function(data, response) {

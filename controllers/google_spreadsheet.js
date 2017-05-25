@@ -8,11 +8,14 @@ var sheetArray = [
   "1NNmlE_0uhjOwClLfxOcSFLhE9pOGIE0I9yLDkdpcveE",
   "1WQ8GLijceoVkpY8APxw9eamtex8-T5Zb-ADzXQVncCc"
 ]
-var index = 0
-var doc = new GoogleSpreadsheet(sheetArray[index]);
+
+var sheetIndex = 0;
 var sheet;
 
 module.exports = function(jsonfile ) {
+  var doc = new GoogleSpreadsheet(sheetArray[sheetIndex]);
+
+  sheetIndex = (sheetIndex + 1) % 5 ;
   async.series([
     function setAuth(step) {
       var creds = require('../google-generated-creds.json');
@@ -28,14 +31,11 @@ module.exports = function(jsonfile ) {
       });
     },
     function managingSheets(step) {
-
-      //sheet.clear(function(err) {
-        //console.log(err)
-
+      sheet.clear(function(err) {
+        console.log(err)
         sheet.setTitle('Transactions', function(err) {
           console.log(err)
           sheet.setHeaderRow(['DATE OPERATION', 'DATE VALEUR', 'LIBELLE', 'MONTANT', 'DEVISE'], function(err) {
-
             function addRow(record) {
               var date = record.date
               var new_date = date.split("-").reverse().join('/');
@@ -66,7 +66,7 @@ module.exports = function(jsonfile ) {
             }
           });
         });
-      //})
+      });
     }
   ]);
 }
