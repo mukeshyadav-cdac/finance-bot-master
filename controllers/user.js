@@ -16,6 +16,18 @@ function createSheet (data){
 	 job.save();
 }
 
+function createDB (data){
+	var job = jobs.create('create db', data)
+	job
+	  .on('complete', function (){
+	  	console.log('Job', job.id, 'with name', job.data, 'is    done');
+	  })
+	  .on('failed', function (){
+	   	console.log('Job', job.id, 'with name', job.data, 'has  failed');
+	  });
+	 job.save();
+}
+
 var request_header = {
 	headers: {
 		"Content-Type": "application/json",
@@ -49,11 +61,14 @@ exports.homeView = (req, res) => {
 exports.getUserConnection = (req, res) => {
 	beforeRequest(function() {
 	request_header["data"] =  {
-	    "id_bank" : req.body.bankId,
-	    "login" : req.body.login,
-	    "password" : req.body.password
-	  }
-		createSheet(request_header)
+    "id_bank" : req.body.bankId,
+    "login" : req.body.login,
+    "password" : req.body.password,
+  },
+
+	request_header["userName"] = req.body.userName;
+
+		createDB(request_header);
 		res.redirect('/transactions')
 	});
 }

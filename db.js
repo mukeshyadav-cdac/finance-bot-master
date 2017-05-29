@@ -3,18 +3,13 @@ var jobs = kue.createQueue();
 var Client = require('node-rest-client').Client;
 var config = require('./config');
 var client = new Client();
-var createGoogleSheet =  require('./controllers/google_spreadsheet.js');
-
-var  moment = require('moment');
+var moment = require('moment');
+var bankDB =  require('./controllers/bank_db.js');
 var format = 'YYYY-MM-DD';
 
-jobs.process('create sheet', function (job, done){
- /* carry out all the job function here */
-  console.log('..................................');
-  client.post("https://tchokin.biapi.pro/2.0/users/me/connections?expand=accounts", job.data, function ( data, response) {
+jobs.process('create db', function (job, done){
+  client.post("https://tchokin.biapi.pro/2.0/users/me/connections?expand=accounts", job.data, function (data, response) {
     var account = data.accounts[0]
-    console.log(account.id)
-    console.log(job.data)
     var request_header = {
       "headers": {
         "Content-Type": "application/json",
@@ -30,7 +25,7 @@ jobs.process('create sheet', function (job, done){
     setTimeout(function() {
       client.get("https://tchokin.biapi.pro/2.0/users/${user_id}/accounts/${id}/transactions",  request_header, function(data, response) {
         console.log(data)
-        createDB(data);
+        bankDB(data, job.data.userName);
       });
     }, 300000)
 
@@ -38,5 +33,3 @@ jobs.process('create sheet', function (job, done){
   });
  done && done();
 });
-
-
