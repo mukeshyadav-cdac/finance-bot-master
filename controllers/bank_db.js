@@ -1,4 +1,5 @@
 var Datastore = require('nedb');
+var apiCall = require('./transactions_api.js');
 
 module.exports = function(jsonfile, name) {
   var dbPathName = './db/'+ name;
@@ -61,7 +62,9 @@ module.exports = function(jsonfile, name) {
     db.insert(dictPositives, function(err, posDoc) {
       db.insert(dictNegatives, function(err, newDoc) {
         console.log("inserted document");
+        apiCall(name);
       });
     });
   });
 }
+
