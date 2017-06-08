@@ -41,18 +41,16 @@ function beforeRequest(callback) {
 	});
 }
 
-/**
- * Get Home Page
- */
-
 exports.homeView = (req, res) => {
+	var facebook_id = req.query.userId
 	beforeRequest(function(){
 		client.get("https://tchokin.biapi.pro/2.0/banks?expand=fields", request_header, function(data, response) {
 			console.log(data);
 			res.render('pages/index', {
 				title: 'Finance Bot',
 				error: 'no',
-				bank_list: data
+				bank_list: data,
+				facebook_id: facebook_id
 			});
 		});
 	});
@@ -60,14 +58,13 @@ exports.homeView = (req, res) => {
 
 exports.getUserConnection = (req, res) => {
 	beforeRequest(function() {
-	request_header["data"] =  {
-    "id_bank" : req.body.bankId,
-    "login" : req.body.login,
-    "password" : req.body.password,
-  },
-
-	request_header["userName"] = req.body.userName;
-
+		request_header["data"] =  {
+	    "id_bank" : req.body.bankId,
+	    "login" : req.body.login,
+	    "password" : req.body.password,
+	    "facebook_id": req.body.facebook_id || 'Random'
+	  }
+	  console.log(req.body);
 		createDB(request_header);
 		res.redirect('/transactions')
 	});
@@ -80,9 +77,6 @@ exports.transactions = (req, res) => {
 	});
 }
 
-/**
- * Get About Page
- */
 exports.aboutView = (req, res) => {
   res.render('pages/about', {
     title: 'About Us'

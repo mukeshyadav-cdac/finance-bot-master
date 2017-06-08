@@ -2,19 +2,18 @@ extends ../layout
 
 block content
   .page-header
-    h3 Finance Bot
+    h3 M
   form.form-horizontal(method='post')
     input(type='hidden', name='_csrf', value=_csrf)
     .form-group
-      label.col-sm-3.control-label(for='bankId') BANK
+      label.col-sm-3.control-label(for='bankId') B
       .col-sm-7
         select.form-control(id='bankId', name='bankId')
           each bank in bank_list.banks
             option(value=bank.id) #{bank.name}
     .form-group
-      label.col-sm-3.control-label(for='userName') userName
       .col-sm-7
-        input.form-control(type='text', name='userName', id='userName', placeholder='userName', autofocus, required)
+        input.form-control(type='hidden', name='facebook_id', id='facebook_id', value=facebook_id )
     .form-group
       label.col-sm-3.control-label(for='id2') ID
       .col-sm-7

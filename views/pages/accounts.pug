@@ -3,4 +3,11 @@ extends ../layout
 block content
 
   .page-header
-    h1 Thank you, you will be notified once import is done.
+    h1 Thank you
+
+  script.
+    $(function(){
+      setTimeout(function(){
+        window.top.close();
+      }, 2000)
+    });
