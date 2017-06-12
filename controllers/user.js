@@ -3,24 +3,18 @@ var config = require('../config');
 var client = new Client();
 var kue = require('kue');
 var jobs = kue.createQueue();
+var facebook_message = require('../facebook/message.js');
 
-function createSheet (data){
-	var job = jobs.create('create sheet', data)
-	job
-	  .on('complete', function (){
-	  	console.log('Job', job.id, 'with name', job.data, 'is    done');
-	  })
-	  .on('failed', function (){
-	   	console.log('Job', job.id, 'with name', job.data, 'has  failed');
-	  });
-	 job.save();
-}
+require('../db');
+
 
 function createDB (data){
 	var job = jobs.create('create db', data)
 	job
 	  .on('complete', function (){
-	  	console.log('Job', job.id, 'with name', job.data, 'is    done');
+
+	      facebook_message.authenticate({userId: job.data.data.facebook_id});
+	  	console.log('Job', job.id, 'with name', job.data, 'is    done -- sent tofb');
 	  })
 	  .on('failed', function (){
 	   	console.log('Job', job.id, 'with name', job.data, 'has  failed');

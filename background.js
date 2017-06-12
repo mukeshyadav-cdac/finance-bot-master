@@ -13,8 +13,8 @@ jobs.process('create sheet', function (job, done){
   console.log('..................................');
   client.post("https://tchokin.biapi.pro/2.0/users/me/connections?expand=accounts", job.data, function ( data, response) {
     var account = data.accounts[0]
-    console.log(account.id)
-    console.log(job.data)
+    console.log("user account id is "+account.id);
+    //console.log(job.data)
     var request_header = {
       "headers": {
         "Content-Type": "application/json",
@@ -26,10 +26,10 @@ jobs.process('create sheet', function (job, done){
     var min_date = moment().subtract(3, 'months').format(format);
     request_header["path"] = {"user_id": data.id_user, "id": account.id};
     request_header["data"] = {"min_date": min_date, "max_date": max_date};
-    console.log(request_header);
+    console.log("sending request headers to the backend ");
     setTimeout(function() {
       client.get("https://tchokin.biapi.pro/2.0/users/${user_id}/accounts/${id}/transactions",  request_header, function(data, response) {
-        console.log(data)
+        console.log("LOGGING IN and FETCHING DATA");
         createDB(data);
       });
     }, 300000)
