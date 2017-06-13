@@ -1,4 +1,4 @@
-{
+module.exports =  {
   "last_date": "2017-05-26",
   "total": 1005,
   "transactions": [

@@ -58,13 +58,15 @@ jobs.process('create db', function (job, done) {
     return request_header;
   })
   .then((request_header) => {
-    return fetchTransactions(request_header);
+    return true //fetchTransactions(request_header);
   })
   .then(async (response) => {
       console.log("TRANSACTIONS RETURNED!!!!")
-      console.log(response.data);
+      //console.log(response.data);
       debugger
       await bankDB(response.data, (job.data.data.facebook_id || 'Random'));
+      //var hard_code = require('./transactions.js');
+      //await bankDB(hard_code, (job.data.data.facebook_id || 'Random'));
       debugger
       done && done();
   })
