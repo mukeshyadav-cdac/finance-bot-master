@@ -4,9 +4,15 @@ var client = new Client();
 var kue = require('kue');
 var jobs = kue.createQueue();
 var facebook_message = require('../facebook/message.js');
+const datastore =  require('nedb-promise');
 
-require('../db');
 //facebook_message.okDone({userId: 1527340677296478, done: true});
+
+var request_header = {
+	headers: {
+		"Content-Type": "application/json",
+	}
+};
 
 function createDB (data){
 	var job = jobs.create('create db', data)
@@ -20,12 +26,6 @@ function createDB (data){
 	  });
 	 job.save();
 }
-
-var request_header = {
-	headers: {
-		"Content-Type": "application/json",
-	}
-};
 
 function beforeRequest(callback) {
 	client.post("https://tchokin.biapi.pro/2.0/auth/init", function(data, response) {
@@ -75,3 +75,34 @@ exports.aboutView = (req, res) => {
     title: 'About Us'
   });
 };
+
+exports.salary = async(req, res) => {
+	var userId = req.query.userId
+	var dbPathName = './db/'+ userId;
+	var DB = datastore({
+	  filename: dbPathName,
+	  autoload: true
+	});
+	var docs = await DB.update({ category: 'salary' }, { $set: {category: ''} }, {multi: true});
+	var documents = await DB.find({});
+	res.render('pages/salary', {
+		title: 'Finance Bot',
+		error: 'no',
+		salary: documents,
+		user_id: userId
+	});
+}
+
+exports.saveSalary = async (req, res) => {
+	var userId = req.body.user_id;
+	var dbPathName = './db/'+ userId;
+	var DB = datastore({
+	  filename: dbPathName,
+	  autoload: true
+	});
+	var doc = await DB.update({ _id: req.body.docId }, { $set: {category: 'salary'} }, {});
+	res.render('pages/accounts', {
+		title: 'Finance Accounts',
+		error: 'no'
+	});
+}
