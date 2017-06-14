@@ -6,22 +6,13 @@ var jobs = kue.createQueue();
 var facebook_message = require('../facebook/message.js');
 
 require('../db');
-
+//facebook_message.okDone({userId: 1527340677296478, done: true});
 
 function createDB (data){
 	var job = jobs.create('create db', data)
 	job
 	  .on('complete', function (){
-	      facebook_message.okDone({userId: job.data.data.facebook_id});
-	      setTimeout(function() {
-	      	facebook_message.saleryPreOne({userId: job.data.data.facebook_id});
-	      	setTimeout(function() {
-	      		facebook_message.saleryPreTwo({userId: job.data.data.facebook_id});
-	      		setTimeout(function() {
-	      			facebook_message.salary({userId: job.data.data.facebook_id, salaryPayload: 'salary', url: config.url + 'salary', webTitle: 'Not my sala'});
-	      		}, 4000)
-	      	}, 4000);
-	      }, 4000);
+	    facebook_message.okDone({userId: job.data.data.facebook_id, done: true});
 	  	console.log('Job', job.id, 'with name', job.data, 'is    done -- sent tofb');
 	  })
 	  .on('failed', function (){

@@ -4,6 +4,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const config = require('./config');
+const apis = require('./api');
 
 mongoose.Promise = global.Promise;
 mongoose.connect(config.MONGODB_URI);
@@ -23,6 +24,7 @@ app.get('/about', userController.aboutView);
 app.get('/', userController.homeView);
 app.post('/', userController.getUserConnection);
 app.get('/transactions', userController.transactions);
+app.use('/', apis);
 
 mongoose.connection
   .once('open', () => {
