@@ -39,3 +39,13 @@ exports.okDone = function (userData) {
   client.post(config.bot_url + "/workerMessage", setTextData(userData, 'okDone'), function(data, response) {
   });
 }
+
+exports.salaryConfirm = function (userData) {
+  client.post(config.bot_url + "/workerMessage", setTextData(userData, 'salaryConfirm'), function(data, response) {
+  });
+}
+
+exports.rentConfirm = function (userData) {
+  client.post(config.bot_url + "/workerMessage", setTextData(userData, 'rentConfirm'), function(data, response) {
+  });
+}

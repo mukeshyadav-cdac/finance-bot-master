@@ -1,0 +1,21 @@
+extends ../layout
+
+block content
+  .page-header
+    h3 M
+  form.form-horizontal(method='post')
+    input(type='hidden', name='_csrf', value=_csrf)
+    .form-group
+      .col-sm-7
+        input.form-control(type='hidden', name='user_id', id='user_id', value=user_id )
+    .form-group
+      label.col-sm-3.control-label(for='bankId') B
+      .col-sm-7
+        select.form-control(id='docId', name='docId')
+          each doc in rent
+            option(value=doc._id) #{doc.amount}
+    .form-group
+      .col-sm-offset-3.col-sm-7
+        button.col-sm-3.btn.btn-primary(type='submit')
+          i.fa.fa-user
+          | Submit

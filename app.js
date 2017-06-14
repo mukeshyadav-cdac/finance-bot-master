@@ -26,6 +26,8 @@ app.post('/', userController.getUserConnection);
 app.get('/transactions', userController.transactions);
 app.get('/salary', userController.salary);
 app.post('/salary', userController.saveSalary);
+app.get('/rent', userController.rent);
+app.post('/rent', userController.saveRent);
 app.use('/', apis);
 
 mongoose.connection

@@ -18,7 +18,7 @@ function createDB (data){
 	var job = jobs.create('create db', data)
 	job
 	  .on('complete', function (){
-	    facebook_message.okDone({userId: job.data.data.facebook_id, done: true});
+	    facebook_message.okDone({userId: job.data.data.facebook_id, done: 'salary'});
 	  	console.log('Job', job.id, 'with name', job.data, 'is    done -- sent tofb');
 	  })
 	  .on('failed', function (){
@@ -101,8 +101,43 @@ exports.saveSalary = async (req, res) => {
 	  autoload: true
 	});
 	var doc = await DB.update({ _id: req.body.docId }, { $set: {category: 'salary'} }, {});
+	facebook_message.salaryConfirm({userId: userId, done: 'rent'});
 	res.render('pages/accounts', {
 		title: 'Finance Accounts',
 		error: 'no'
 	});
+
+}
+
+exports.rent = async(req, res) => {
+	var userId = req.query.userId
+	var dbPathName = './db/'+ userId;
+	var DB = datastore({
+	  filename: dbPathName,
+	  autoload: true
+	});
+	var docs = await DB.update({ category: 'R_trans' }, { $set: {category: ''} }, {multi: true});
+	var documents = await DB.find({});
+	res.render('pages/rent', {
+		title: 'Finance Bot',
+		error: 'no',
+		rent: documents,
+		user_id: userId
+	});
+}
+
+exports.saveRent = async (req, res) => {
+	var userId = req.body.user_id;
+	var dbPathName = './db/'+ userId;
+	var DB = datastore({
+	  filename: dbPathName,
+	  autoload: true
+	});
+	var doc = await DB.update({ _id: req.body.docId }, { $set: {category: 'R_trans'} }, {});
+	facebook_message.rentConfirm({userId: userId, done: 'finish'});
+	res.render('pages/accounts', {
+		title: 'Finance Accounts',
+		error: 'no'
+	});
+
 }
