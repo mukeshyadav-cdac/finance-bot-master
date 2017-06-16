@@ -4,5 +4,6 @@ module.exports = {
   "patience": "Thank you for your patience. I've started analyzing your spending. 🔍",
   "okDone": "OK! Done!",
   "salaryConfirm": "Great, I'll remember this.",
-  "rentConfirm": "Great! That's it, we're done! 😅"
+  "rentConfirm": "Great! That's it, we're done! 😅",
+  "rules": ""
 }

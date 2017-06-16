@@ -135,6 +135,7 @@ exports.saveRent = async (req, res) => {
 	});
 	var doc = await DB.update({ _id: req.body.docId }, { $set: {category: 'R_trans'} }, {});
 	facebook_message.rentConfirm({userId: userId, done: 'finish'});
+	facebook_message.rules({userId: userId, done: 'rules'});
 	res.render('pages/accounts', {
 		title: 'Finance Accounts',
 		error: 'no'

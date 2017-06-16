@@ -2,6 +2,7 @@ var Client = require('node-rest-client').Client;
 var client = new Client();
 var config = require('../config');
 var messageData = require('./data');
+var rules = require('../controllers/rules.js');
 
 
 function setTextData(userData, messageType) {
@@ -47,5 +48,14 @@ exports.salaryConfirm = function (userData) {
 
 exports.rentConfirm = function (userData) {
   client.post(config.bot_url + "/workerMessage", setTextData(userData, 'rentConfirm'), function(data, response) {
+  });
+}
+
+exports.rules = function(userData) {
+  var data = setTextData(userData, 'rules');
+  rules(data.userId, function(rulesData) {
+    data["data"].responseText = "Weekly Spendable: " + rulesData.weekly_spendable.toString()  + ", Monthly Spendable: " + rulesData.monthly_spendable.toString();
+    client.post(config.bot_url + "/workerMessage", data, function(data, response) {
+    });
   });
 }
