@@ -1,4 +1,6 @@
 const datastore =  require('nedb-promise');
+var facebook_message = require('../../facebook/message.js');
+
 
 async function getCategoryRecord(req, res) {
   var dbPathName = './db/'+ req.body.userId;
@@ -11,6 +13,13 @@ async function getCategoryRecord(req, res) {
   res.status(200).send(doc);
 }
 
-module.exports = {
-  getCategoryRecord
+function getWeeklyMonthly(req, res) {
+  facebook_message.rules({userId: req.body.userId, done: 'rules'});
+  res.status(200);
 }
+
+module.exports = {
+  getCategoryRecord,
+  getWeeklyMonthly
+}
+
